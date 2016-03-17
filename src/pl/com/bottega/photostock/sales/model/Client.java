@@ -25,43 +25,44 @@ public class Client {
         this(name, address, false, 0, crditLimit);
     }
 
-    public boolean canAfford(double amount){
+    public boolean canAfford(double amount) {
 
-        if(isVIP){
-            double purchasePotential = this.creditLimit + this.amount;
-            this.debt = purchasePotential - amount;
-            if(debt <= 0){
+        if (isVIP) {
+            double amountWithCreditLimit = this.amount + this.creditLimit;
+            this.debt = amountWithCreditLimit - amount;
+
+            if (this.amount <= amount && debt <= creditLimit && debt >= 0) {
+                return true;
+            } else {
                 return false;
             }
-            else {
-                return true;
-            }
-        }
-        else {
-           return this.amount >= amount;
+        } else {
+            return this.amount >= amount;
         }
     }
+
     public void charge(double amount, String couse) {
         if (canAfford(amount)) {
             this.amount -= amount;
-        }
-        else{
-            System.out.println("not afford");
+        } else {
+            System.out.println("Not afford !!");
+            return;
         }
     }
 
-    public void recharge(double amount){
+    public void recharge(double amount) {
         this.amount += amount;
 
     }
 
     public double getSaldo() {
-        if(isVIP && debt <= creditLimit){
-            return this.debt;
+        if(isVIP){
+            return creditLimit + this.amount;
     }
         else {
             return this.amount;
     }
+
     }
 
 }
