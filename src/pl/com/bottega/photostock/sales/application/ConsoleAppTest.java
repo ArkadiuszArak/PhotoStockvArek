@@ -14,9 +14,9 @@ public class ConsoleAppTest {
         misiekZdzisiek.charge(10, "cos");
         System.out.println("Saldo dla Zdziska: " + misiekZdzisiek.getSaldo());*/
 
-        panKozica.recharge(20);
-        panKozica.charge(100, "cos");
-        System.out.println("Saldo dla Kozicy z limitem: " + panKozica.getSaldo());
+        panKozica.recharge(10);
+        //panKozica.charge(100, "cos");
+        //System.out.println("Saldo dla Kozicy z limitem: " + panKozica.getSaldo());
 
 
     }

@@ -30,15 +30,28 @@ public class Picture {
         return true;
     }
 
-    public void reservedPer(Client client){
+    public void reservedPer(Client reservingClient){
 
     }
 
-    public void unreservedPer(Client client){
+    public void unreservedPer(Client unreservigClient){
 
     }
 
     public void soldPer(Client client){
 
+    }
+
+    public void cancel() {
+        isAvailable = false;
+    }
+
+    public String getNumber() {
+
+        return number;
+    }
+
+    public double getPrice() {
+        return price;
     }
 }
