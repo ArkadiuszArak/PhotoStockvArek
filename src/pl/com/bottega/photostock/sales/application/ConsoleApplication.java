@@ -1,6 +1,9 @@
 package pl.com.bottega.photostock.sales.application;
 
 import pl.com.bottega.photostock.sales.model.*;
+import pl.com.bottega.photostock.sales.model.products.Picture;
+
+import java.util.List;
 
 /**
  * Created by arkadiuszarak on 12/03/2016.
@@ -45,7 +48,7 @@ public class ConsoleApplication {
 
         if (canAfford){
             client.charge(offerTotalCost, "Za zdjecia");
-            Picture[] items = offer.getItems();
+            List<Product> items = offer.getItems();
             Purchase purchase = new Purchase(client, items); //TODO przeladowac z oferty zakupu
         }
         else {

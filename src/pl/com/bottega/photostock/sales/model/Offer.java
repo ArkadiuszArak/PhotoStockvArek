@@ -1,15 +1,30 @@
 package pl.com.bottega.photostock.sales.model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by arkadiuszarak on 12/03/2016.
  */
 public class Offer {
 
-    private Picture[] items;
+    private final Client owner;
+    private List<Product> items = new LinkedList<>();
+    double totalCost;
 
-    public Offer(Picture[] items) {
-
+    public Offer(Client owner, List<Product> items) {
+        this.owner = owner;
         this.items = items;
+        this.totalCost = calculateTotalCost();
+    }
+
+    public double calculateTotalCost() {
+
+        double costForAllItems = 0;
+        for (Product prod: items){
+           costForAllItems += prod.calculatePrice();
+        }
+        return costForAllItems;
     }
 
     public boolean sameAs(Offer offer, double isThesame){
@@ -19,7 +34,7 @@ public class Offer {
 
     public int getItemsCount(){
 
-        return 0;
+        return items.size();
     }
 
     public double getTotalCost(){
@@ -27,7 +42,7 @@ public class Offer {
         return 0;
     }
 
-    public Picture[] getItems() {
+    public List<Product> getItems() {
 
         return items;
     }
