@@ -17,14 +17,14 @@ public class ProductsTestApp {
         Picture mustang = new Picture("nr1", new String[]{"ford", "mustang"}, 2, true);
         Picture sMax = new Picture("nr2", new String[]{"ford", "S-max"}, 200, true);
 
-        Clip wlaczamyCos = new Clip("wahat ever", 100, 20, "nr 20", new String[]{"fdfs","fsdf"},true);
+        Clip theDoorsClip = new Clip("Riders on the Storm", 100, 20, "nr 20", new String[]{"Art Rock","short"},true);
 
-        Song ridersOnTheStorm = new Song("nr 12", "Riders on the storm", 310, 3, Song.channels.STEREO, new String[]{"old rock", "The Doors"},"L.A. Woman", "The Doors", true);
+        Song ridersOnTheStorm = new Song("nr 12", "Riders on the storm", 310, 3, Song.channels.STEREO, new String[]{"rock band", "The Doors"},"L.A. Woman", "The Doors", true);
 
         Reservation reservation = new Reservation(client);
 
         reservation.add(mustang);
-        reservation.add(wlaczamyCos);
+        reservation.add(theDoorsClip);
         reservation.add(sMax);
         reservation.add(ridersOnTheStorm);
 
