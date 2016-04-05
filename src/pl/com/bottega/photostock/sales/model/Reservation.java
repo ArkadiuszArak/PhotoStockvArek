@@ -38,9 +38,7 @@ public class Reservation {
         List<Product> result = new ArrayList<>();
 
         for (Product product: items){
-            if (product.isAvailable()){
                 result.add(product);
-            }
         }
         return new Offer(owerOfRes,result);
     }

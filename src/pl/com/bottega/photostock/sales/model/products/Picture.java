@@ -43,11 +43,16 @@ public class Picture implements Product{
     }
 
     public void reservedPer(Client reservingClient){
-
+        if (!isAvailable)
+            throw new IllegalStateException("Dear " + reservingClient.getName() + " you can't reserve this product");
+        else
+        isAvailable = false;
+        System.out.println("Dear " + reservingClient.getName() + " you reserved picture " + getNumber());
     }
 
     public void unreservedPer(Client unreservigClient){
-
+        isAvailable = true;
+        System.out.println("You unreserved picture " + getNumber());
     }
 
     public void soldPer(Client client){

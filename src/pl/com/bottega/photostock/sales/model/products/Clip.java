@@ -45,11 +45,17 @@ public class Clip implements Product{
 
     @Override
     public void reservedPer(Client client) {
-
+        if (!isAvailable)
+            throw new IllegalStateException("Dear " + client.getName() + " you can't reserve this product");
+        else
+            isAvailable = false;
+        System.out.println("Dear " + client.getName() + " you reserved clip " + "\"" + title + "\"");
     }
 
     @Override
     public void unreservedPer(Client client) {
+        isAvailable = true;
+        System.out.println("You unreserved clip " + number);
 
     }
 }
