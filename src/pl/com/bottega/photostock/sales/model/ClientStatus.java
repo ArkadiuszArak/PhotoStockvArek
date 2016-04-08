@@ -6,6 +6,10 @@ package pl.com.bottega.photostock.sales.model;
 public enum ClientStatus {
     STANDARD, VIP, GOLD, SILVER, PLATINIUM;
 
+    private static final String[] POLISHDICTIONARY = {"STANDARD", "VIP", "ZLOTY", "SREBRNY", "PLATYNOWY"};
 
-
+    public String getPolishString() {
+        int nr = this.ordinal();
+        return POLISHDICTIONARY[nr];
+    }
 }

@@ -1,61 +1,21 @@
 package pl.com.bottega.photostock.sales.model.products;
 
-import pl.com.bottega.photostock.sales.model.Client;
-import pl.com.bottega.photostock.sales.model.Product;
-
-import java.util.List;
-
 /**
  * Created by arkadiuszarak on 03/04/2016.
  */
-public class Clip implements Product{
+public class Clip extends AbstractProduct {
 
     private String title;
-    private double price;
-    private double lenghtOfClip;
-    private String number;
-    private String[] tags;
+    private double duration;
     private boolean isAvailable;
 
-    public Clip(String title, double price, double lenghtOfClip, String number, String[] tags, boolean isAvailable) {
+    public Clip(String number, String[] tags, double price, boolean isAvailable, String title, double duration) {
+        super(number,tags,price,isAvailable);
         this.title = title;
-        this.price = price;
-        this.lenghtOfClip = lenghtOfClip;
-        this.number = number;
-        this.tags = tags;
-        this.isAvailable = isAvailable;
+        this.duration = duration;
     }
 
-    @Override
-    public boolean isAvailable() {
-
-        return isAvailable;
-    }
-
-    @Override
-    public double calculatePrice() {
-
-        return price;
-    }
-
-    @Override
-    public void cancel() {
-        isAvailable = false;
-    }
-
-    @Override
-    public void reservedPer(Client client) {
-        if (!isAvailable)
-            throw new IllegalStateException("Dear " + client.getName() + " you can't reserve this product");
-        else
-            isAvailable = false;
-        System.out.println("Dear " + client.getName() + " you reserved clip " + "\"" + title + "\"");
-    }
-
-    @Override
-    public void unreservedPer(Client client) {
-        isAvailable = true;
-        System.out.println("You unreserved clip " + number);
-
+    public double getDuration() {
+        return duration;
     }
 }

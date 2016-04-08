@@ -12,7 +12,7 @@ public class ConsoleApplication {
     public static void main(String[] args){
 
 
-        Client client = new Client("Zenobiusz", "ul.x", 0);
+        Client client = new Client("Zenobiusz", "ul.x", ClientStatus.STANDARD);
 
         LightBox ldb = new LightBox(client);
         ldb.changeName("pily");

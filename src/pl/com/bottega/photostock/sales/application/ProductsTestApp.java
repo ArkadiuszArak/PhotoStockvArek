@@ -1,8 +1,7 @@
 package pl.com.bottega.photostock.sales.application;
 
-import pl.com.bottega.photostock.sales.model.Client;
-import pl.com.bottega.photostock.sales.model.Offer;
-import pl.com.bottega.photostock.sales.model.Reservation;
+import pl.com.bottega.photostock.sales.model.*;
+import pl.com.bottega.photostock.sales.model.products.AbstractProduct;
 import pl.com.bottega.photostock.sales.model.products.Clip;
 import pl.com.bottega.photostock.sales.model.products.Picture;
 import pl.com.bottega.photostock.sales.model.products.Song;
@@ -12,50 +11,45 @@ import pl.com.bottega.photostock.sales.model.products.Song;
  */
 public class ProductsTestApp {
     public static void main(String[] args) {
-        Client client = new Client("Henry Ford", "ul.Forda", 0);
 
-        Client secondTestClient = new Client("Test client", "Ziemia", 12);
+        Client clientOne = new Client("Henry Ford", "ul.Forda", ClientStatus.STANDARD);
+        Client clientTwo = new Client("Test client", "Ziemia", ClientStatus.VIP);
 
-        Picture mustang = new Picture("nr1", new String[]{"ford", "mustang"}, 2, true);
-        Picture sMax = new Picture("nr2", new String[]{"ford", "S-max"}, 200, true);
+        AbstractProduct mustang = new Picture("nr1", new String[]{"ford", "mustang"}, 2, true);
+        AbstractProduct sMax = new Picture("nr2", new String[]{"ford", "S-max"}, 200, true);
+        AbstractProduct theDoorsClip = new Clip("nr 14", new String[]{"rock"}, 230, true, "Riders on the Storm", 23);
+        AbstractProduct lightMyFire = new Song("nr 124", new String[]{"rock band", "The Doors"}, 35, true, "Light My Fire", 320, Song.CHANNELS.SEVEN_ONE, "L.A. Woman", "The Doors");
 
-        Clip theDoorsClip = new Clip("Riders on the Storm", 100, 20, "nr 20", new String[]{"Art Rock","short"},true);
+        Reservation reservationOne = new Reservation(clientOne);
+        Reservation reservationTwo = new Reservation(clientTwo);
 
-        Song lightMyFire = new Song("nr 12", "Ligh My Fire", 310, 360, Song.CHANNELS.SEVEN_ONE, new String[]{"rock band", "The Doors"},"L.A. Woman", "The Doors", true);
+        reservationOne.add(mustang);
+        mustang.reservedPer(clientOne);
 
-        Reservation reservation = new Reservation(client);
+        reservationOne.add(sMax);
+        sMax.reservedPer(clientOne);
 
-        Reservation secondTestReservation = new Reservation(secondTestClient);
+        reservationOne.add(theDoorsClip);
+        theDoorsClip.reservedPer(clientOne);
 
-        reservation.add(mustang);
-        mustang.reservedPer(client);
+        reservationOne.add(lightMyFire);
+        lightMyFire.reservedPer(clientOne);
 
-        reservation.add(sMax);
-        sMax.reservedPer(client);
+        reservationOne.remove(lightMyFire);
+        lightMyFire.unreservedPer(clientOne);
 
-        reservation.add(theDoorsClip);
-        theDoorsClip.reservedPer(client);
+        Offer offerOne = reservationOne.generateOffer();
 
-        reservation.add(lightMyFire);
-        lightMyFire.reservedPer(client);
+        System.out.println("Items: " + offerOne.getItemsCount());
+        System.out.println("Total cost: " + offerOne.calculateTotalCost());
 
-        reservation.remove(lightMyFire);
-        lightMyFire.unreservedPer(client);
 
-        Offer oferta = reservation.generateOffer();
+        reservationTwo.add(lightMyFire);
+        lightMyFire.reservedPer(clientTwo);
 
-        int count = oferta.getItemsCount();
-        System.out.println("Items: " + count);
-
-        double totalPrice = oferta.calculateTotalCost();
-        System.out.println("Total cost: " + totalPrice);
-
-        secondTestReservation.add(lightMyFire);
-        lightMyFire.reservedPer(secondTestClient);
-
-        Offer secondTestOffer = secondTestReservation.generateOffer();
-        System.out.println("Items: " + secondTestOffer.getItemsCount());
-        System.out.println("Total cost: " + secondTestOffer.calculateTotalCost());
+        Offer offerTwo = reservationTwo.generateOffer();
+        System.out.println("Items: " + offerTwo.getItemsCount());
+        System.out.println("Total cost: " + offerTwo.calculateTotalCost());
 
     }
 }

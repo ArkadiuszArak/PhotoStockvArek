@@ -1,6 +1,7 @@
 package pl.com.bottega.photostock.sales.application;
 
 import pl.com.bottega.photostock.sales.model.Client;
+import pl.com.bottega.photostock.sales.model.ClientStatus;
 
 /**
  * Created by arkadiuszarak on 15/03/2016.
@@ -8,7 +9,7 @@ import pl.com.bottega.photostock.sales.model.Client;
 public class ConsoleAppTest {
     public static void main(String[] args) {
        // Client misiekZdzisiek = new Client("Zdzisiek", "Las", 0); //nie jest VIP
-        Client panKozica = new Client("Kozica" ,"Gory", Client.Status.VIP, 0 ,100); // VIP
+        Client panKozica = new Client("Kozica" ,"Gory", ClientStatus.VIP); // VIP
 
 /*        misiekZdzisiek.recharge(23);
         misiekZdzisiek.charge(10, "cos");
